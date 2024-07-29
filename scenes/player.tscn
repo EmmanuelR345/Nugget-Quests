@@ -260,4 +260,4 @@ script = ExtResource("1_dtvfk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bh3e7")
-animation = &"Left_idle_walk"
+animation = &"Right_idle_walk"
