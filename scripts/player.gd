@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #velocity of the character sliding
-const SPEED = 1500.0
+const SPEED = 200
 #variable to store the current direction of the player
 var current_dir = "none"
 

@@ -11,15 +11,10 @@ config_version=5
 [application]
 
 config/name="NuggetPlatform"
-run/main_scene="res://scenes/player.tscn"
+run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
-window/stretch/scale=0.5
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+window/stretch/scale=3.0

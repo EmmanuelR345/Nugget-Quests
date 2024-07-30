@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjhg5kyj8p1r"
-path="res://.godot/imported/RIghtSideFightAnimation.png-b624bf21d233ad4bdf6ff4e969a35261.ctex"
+uid="uid://3s1k0q3ffqb8"
+path="res://.godot/imported/NuggetRightSide.png-58efa207344a0a198921af275c881712.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/RIghtSideFightAnimation.png"
-dest_files=["res://.godot/imported/RIghtSideFightAnimation.png-b624bf21d233ad4bdf6ff4e969a35261.ctex"]
+source_file="res://art/NuggetRightSide.png"
+dest_files=["res://.godot/imported/NuggetRightSide.png-58efa207344a0a198921af275c881712.ctex"]
 
 [params]
 
