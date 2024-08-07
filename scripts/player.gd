@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+var enemy_inattack_range = false
+var enemy_attack_cooldown = true
+var health = 100
+var player_alive = true
+
 #velocity of the character sliding
 const SPEED = 200
 #variable to store the current direction of the player
@@ -11,6 +16,13 @@ var current_dir = "none"
 func _physics_process(delta):
 	player_movement(delta)
 	move_and_slide()
+	enemy_attack()
+
+	if health <= 0:
+		player_alive = false #go back to menu or respawn
+		health = 0
+		print("player has been killed")
+		self.queue_free()
 
 #what is up
 func player_movement(delta):
@@ -54,3 +66,24 @@ func play_anim(movement, vertical=false):
 			anim.play("Left_idle_walk")
 		elif movement == 0:
 			anim.play("Left_idle_walk")
+
+func player():
+	pass
+
+func _on_player_hitbox_body_entered(body:Node2D):
+	if body.has_method("enemy"):
+		enemy_inattack_range = true
+
+func _on_player_hitbox_body_exited(body:Node2D):
+	if body.has_method("enemy"):
+		enemy_inattack_range = false
+	
+func enemy_attack():
+	if enemy_inattack_range and enemy_attack_cooldown == true:
+		health = health - 20
+		enemy_attack_cooldown = false
+		$attack_cooldown.start()
+		print(health)
+
+func _on_attack_cooldown_timeout():
+	enemy_attack_cooldown = true

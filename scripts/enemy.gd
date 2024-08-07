@@ -31,3 +31,6 @@ func _on_detection_area_body_exited(body:Node2D):
 	player = null
 	player_chase = false
 
+
+func enemy():
+	pass
