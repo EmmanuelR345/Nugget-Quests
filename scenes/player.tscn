@@ -157,40 +157,40 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_5u2g4")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_fo7xb")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_6s6yy")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_iv0k6")
 }, {
-"duration": 1.0,
+"duration": 0.1,
 "texture": SubResource("AtlasTexture_n4g38")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_q8wrr")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_ouxix")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_mwfi8")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_k0ai4")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_i817c")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": SubResource("AtlasTexture_7qptx")
 }],
-"loop": true,
+"loop": false,
 "name": &"Left_side_fight",
 "speed": 5.0
 }, {
@@ -248,7 +248,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hrp5g")
 }],
-"loop": true,
+"loop": false,
 "name": &"Right_side_fight",
 "speed": 5.0
 }]
@@ -257,7 +257,7 @@ animations = [{
 radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lvg6x"]
-radius = 29.0172
+radius = 27.0185
 
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -267,7 +267,6 @@ script = ExtResource("1_dtvfk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bh3e7")
 animation = &"Right_idle_walk"
-frame_progress = 0.307616
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -2)
@@ -276,11 +275,14 @@ shape = SubResource("CircleShape2D_3pei6")
 [node name="player_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
-position = Vector2(-2, 0)
+position = Vector2(-3, -6)
 shape = SubResource("CircleShape2D_lvg6x")
 
 [node name="attack_cooldown" type="Timer" parent="."]
 
+[node name="deal_attack_timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]

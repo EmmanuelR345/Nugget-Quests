@@ -5,6 +5,9 @@ var enemy_attack_cooldown = true
 var health = 100
 var player_alive = true
 
+var attack_ip = false
+
+
 #velocity of the character sliding
 const SPEED = 200
 #variable to store the current direction of the player
@@ -16,7 +19,7 @@ var current_dir = "none"
 func _physics_process(delta):
 	player_movement(delta)
 	move_and_slide()
-	enemy_attack()
+	attack()
 
 	if health <= 0:
 		player_alive = false #go back to menu or respawn
@@ -26,6 +29,7 @@ func _physics_process(delta):
 
 #what is up
 func player_movement(delta):
+	
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
 		play_anim(1)
@@ -58,14 +62,16 @@ func play_anim(movement, vertical=false):
 		if movement == 1:
 			anim.play("Right_idle_walk")
 		elif movement == 0:
-			anim.play("Right_idle_walk")
+			if attack_ip == false:	
+				anim.play("Right_idle_walk")
 
 	if dir == "left" or (vertical and current_dir == "left"):
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("Left_idle_walk")
 		elif movement == 0:
-			anim.play("Left_idle_walk")
+			if attack_ip == false:	
+				anim.play("Left_idle_walk")
 
 func player():
 	pass
@@ -87,3 +93,27 @@ func enemy_attack():
 
 func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
+
+func attack():
+	var dir = current_dir
+
+	if Input.is_action_just_pressed("attack"):
+		global.player_current_attack = true
+		attack_ip = true
+
+		if dir == "right":
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("Right_side_fight")
+			$deal_attack_timer.start()
+		if dir == "left":
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("Left_side_fight")
+			$deal_attack_timer.start()
+
+
+
+func _on_deal_attack_timer_timeout():
+	$deal_attack_timer.stop()
+	global.player_current_attack = false
+	attack_ip = false
+
